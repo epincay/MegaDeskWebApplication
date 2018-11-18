@@ -1,0 +1,111 @@
+﻿@page
+@model MegaDeskWebApplication.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a class="btn btn-primary btn-lg" asp-page="Create">Create New Quote</a>
+</p>
+
+<hr />
+
+<form class="form-inline">
+    <div class="form-group mb-2">
+        <input class="form-control" type="text" name="SearchString" placeholder="Search Name or Material ...">
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+        <input class="btn btn-success" type="submit" value="Filter" />
+    </div>
+</form>
+  
+<hr />
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].Width)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].Depth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].NumOfDrawers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].Material)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].RushOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].QuoteDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].TotalAmount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Quote)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Width)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Depth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumOfDrawers)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Material)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RushOrder)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuoteDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalAmount)
+                </td>
+                <td>
+                    <a class="btn btn-warning" asp-page="./Edit" asp-route-id="@item.ID">Edit</a>
+                    <a class="btn btn-info" asp-page="./Details" asp-route-id="@item.ID">Details</a>
+                    <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.Quote.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Quote.HasNextPage ? "disabled" : "";
+}
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Quote.PageIndex - 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-dark @prevDisabled">
+    Previous
+</a>
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Quote.PageIndex + 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-dark @nextDisabled">
+    Next
+</a>

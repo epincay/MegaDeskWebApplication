@@ -1,0 +1,78 @@
+﻿@page
+@model MegaDeskWebApplication.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Quote</h4>
+<hr />
+<div class="row">
+    <form method="post">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-3">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Quote.ID" />
+            <div class="form-group">
+                <label asp-for="Quote.Name" class="control-label"></label>
+                <input asp-for="Quote.Name" class="form-control" />
+                <span asp-validation-for="Quote.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quote.Width" class="control-label">Width (min 24", max 96")</label>
+                <input asp-for="Quote.Width" class="form-control" />
+                <span asp-validation-for="Quote.Width" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quote.Depth" class="control-label">Depth (min 12", max 48")</label>
+                <input asp-for="Quote.Depth" class="form-control" />
+                <span asp-validation-for="Quote.Depth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quote.NumOfDrawers" class="control-label">Drawers (Between 0 - 7)</label>
+                <input asp-for="Quote.NumOfDrawers" class="form-control" />
+                <span asp-validation-for="Quote.NumOfDrawers" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="Quote.Material" class="control-label"></label>
+                <select asp-for="Quote.Material" class="form-control">
+                    @foreach (var item in @Model.MaterialList)
+                    {
+                        <option value="@item">@item</option>}
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quote.RushOrder" class="control-label">Rush Days</label><br />
+                <radiogroup>
+                    <input type="radio" asp-for="Quote.RushOrder" value="0" @*class="form-control" *@ /> N/A <br />
+                    <input type="radio" asp-for="Quote.RushOrder" value="3" @*class="form-control" *@ /> 3 <br />
+                    <input type="radio" asp-for="Quote.RushOrder" value="5" @*class="form-control" *@ /> 5 <br />
+                    <input type="radio" asp-for="Quote.RushOrder" value="7" @*class="form-control" *@ /> 7<br />
+                </radiogroup>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quote.QuoteDate" class="control-label"></label>
+                <input asp-for="Quote.QuoteDate" class="form-control" />
+                <span asp-validation-for="Quote.QuoteDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
