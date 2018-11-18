@@ -37,25 +37,6 @@ namespace MegaDeskWebApplication
             if (Quote.Width * Quote.Depth < Quote.BASESIZE)
             {
                 Quote.TotalAmount += Quote.BASEPRICE;
-
-                switch (Quote.Material)
-                {
-                    case "Oak":
-                        Quote.TotalAmount += Quote.OAKPRICE;
-                        break;
-                    case "Laminate":
-                        Quote.TotalAmount += Quote.LAMINATEPRICE;
-                        break;
-                    case "Pine":
-                        Quote.TotalAmount += Quote.PINEPRICE;
-                        break;
-                    case "Rosewood":
-                        Quote.TotalAmount += Quote.ROSEPRICE;
-                        break;
-                    case "Veneer":
-                        Quote.TotalAmount += Quote.VENEERPRICE;
-                        break;
-                }
                 
                 //Validation for RushOrder
                 switch (Quote.RushOrder)
@@ -77,24 +58,6 @@ namespace MegaDeskWebApplication
             else if (Quote.Width * Quote.Depth < Quote.MIDDLESIZE)
             {
                 Quote.TotalAmount += Quote.Width * Quote.Depth;
-                switch (Quote.Material)
-                {
-                    case "Oak":
-                        Quote.TotalAmount += Quote.OAKPRICE;
-                        break;
-                    case "Laminate":
-                        Quote.TotalAmount += Quote.LAMINATEPRICE;
-                        break;
-                    case "Pine":
-                        Quote.TotalAmount += Quote.PINEPRICE;
-                        break;
-                    case "Rosewood":
-                        Quote.TotalAmount += Quote.ROSEPRICE;
-                        break;
-                    case "Veneer":
-                        Quote.TotalAmount += Quote.VENEERPRICE;
-                        break;
-                }
 
                 //Validation for RushOrder
                 switch (Quote.RushOrder)
@@ -117,24 +80,6 @@ namespace MegaDeskWebApplication
             else if (Quote.Width * Quote.Depth >= Quote.MIDDLESIZE)
             {
                 Quote.TotalAmount += Quote.Width * Quote.Depth;
-                switch(Quote.Material)
-                {
-                    case "Oak":
-                        Quote.TotalAmount += Quote.OAKPRICE;
-                    break;
-                    case "Laminate":
-                        Quote.TotalAmount += Quote.LAMINATEPRICE;
-                    break;
-                    case "Pine":
-                        Quote.TotalAmount += Quote.PINEPRICE;
-                    break;
-                    case "Rosewood":
-                        Quote.TotalAmount += Quote.ROSEPRICE;
-                    break;
-                    case "Veneer":
-                        Quote.TotalAmount += Quote.VENEERPRICE;
-                    break;
-                }
 
                 //Validation for RushOrder
                 switch (Quote.RushOrder)
@@ -149,6 +94,26 @@ namespace MegaDeskWebApplication
                         Quote.TotalAmount += 40;
                         break;
                 }
+            }
+
+            //Material Price
+            switch (Quote.Material)
+            {
+                case "Oak":
+                    Quote.TotalAmount += Quote.OAKPRICE;
+                    break;
+                case "Laminate":
+                    Quote.TotalAmount += Quote.LAMINATEPRICE;
+                    break;
+                case "Pine":
+                    Quote.TotalAmount += Quote.PINEPRICE;
+                    break;
+                case "Rosewood":
+                    Quote.TotalAmount += Quote.ROSEPRICE;
+                    break;
+                case "Veneer":
+                    Quote.TotalAmount += Quote.VENEERPRICE;
+                    break;
             }
 
             //Validation for Drawers
